@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-tecnocall",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "a node for tecnocall bot apis",
 	"license": "MIT",
 	"homepage": "",
@@ -22,7 +22,8 @@
 		"lint": "n8n-node lint",
 		"lint:fix": "n8n-node lint --fix",
 		"release": "n8n-node release",
-		"prepublishOnly": "n8n-node prerelease"
+		"prepublishOnly": "n8n-node prerelease",
+		"postinstall": "node scripts/patch-eslint.js"
 	},
 	"files": [
 		"dist"
@@ -41,10 +42,17 @@
 		"@n8n/node-cli": "*",
 		"eslint": "9.32.0",
 		"prettier": "3.6.2",
-		"release-it": "^19.0.4",
+		"release-it": "^18.1.2",
 		"typescript": "5.9.2"
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
+	}
+	,
+	"pnpm": {
+		"overrides": {
+			"change-case": "4.1.2",
+			"@n8n/eslint-plugin-community-nodes": "0.5.0"
+		}
 	}
 }
