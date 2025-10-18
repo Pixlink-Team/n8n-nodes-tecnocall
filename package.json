@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-tecnocall",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "a node for tecnocall bot apis",
 	"license": "MIT",
 	"homepage": "",
@@ -47,8 +47,7 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
-	}
-	,
+	},
 	"pnpm": {
 		"overrides": {
 			"change-case": "4.1.2",
