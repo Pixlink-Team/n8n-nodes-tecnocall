@@ -1,6 +1,6 @@
-import type { ILoadOptionsFunctions, INodeListSearchResult } from 'n8n-workflow';
+import type { ILoadOptionsFunctions, INodeParameters } from 'n8n-workflow';
 
-export async function createCustomer(this: ILoadOptionsFunctions): Promise<INodeListSearchResult> {
+export async function createCustomer(this: ILoadOptionsFunctions): Promise<INodeParameters> {
 	const response = await this.helpers.httpRequest.call(this, {
 		method: 'POST',
 		url: '/api/bots/customers',

@@ -9,7 +9,7 @@ export class Tecnocall implements INodeType {
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Consume issues from the Tecnocall API',
+		description: 'Tecnocall API',
 		defaults: {
 			name: 'Tecnocall',
 		},
@@ -33,7 +33,7 @@ export class Tecnocall implements INodeType {
 	};
 
 	methods = {
-		listSearch: {
+		actionHandler: {
 			createCustomer,
 		},
 	};
