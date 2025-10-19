@@ -2,7 +2,7 @@ import type { ILoadOptionsFunctions, INodeParameters } from 'n8n-workflow';
 
 export async function createCustomer(this: ILoadOptionsFunctions): Promise<INodeParameters> {
 	const response = await this.helpers.httpRequest.call(this, {
-		method: 'POST',
+		method: 'GET',
 		url: '/api/bots/customers',
 		body: {
 			// Add necessary customer data here
