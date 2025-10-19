@@ -1,5 +1,6 @@
 import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
 import { createCustomer } from './customer/createCustomer';
+import { getCustomers } from './customer/getCustomers';
 
 export class Tecnocall implements INodeType {
 	description: INodeTypeDescription = {
@@ -35,6 +36,7 @@ export class Tecnocall implements INodeType {
 	methods = {
 		actionHandler: {
 			createCustomer,
+			getCustomers,
 		},
 	};
 }
