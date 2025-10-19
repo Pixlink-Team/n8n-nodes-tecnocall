@@ -30,7 +30,49 @@ export class Tecnocall implements INodeType {
 				'Content-Type': 'application/json',
 			},
 		},
-		properties: [],
+		properties: [
+			{
+				displayName: 'Resource',
+				name: 'resource',
+				type: 'options',
+				noDataExpression: true,
+				options: [
+					{
+						name: 'Customer',
+						value: 'customer',
+					},
+				],
+				default: 'customer',
+				required: true,
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ['customer'],
+					},
+				},
+				options: [
+					{
+						name: 'Create',
+						value: 'createCustomer',
+						description: 'Create a new customer',
+						action: 'Create a customer',
+					},
+					{
+						name: 'Get',
+						value: 'getCustomers',
+						description: 'Get all customers',
+						action: 'Get customers',
+					},
+				],
+				default: 'createCustomer',
+				required: true,
+			},
+		],
 	};
 
 	methods = {
