@@ -1,6 +1,13 @@
-import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
-import { createCustomer } from './customer/createCustomer';
-import { getCustomers } from './customer/getCustomers';
+import {
+	NodeConnectionTypes,
+	NodeOperationError,
+	type IExecuteFunctions,
+	type INodeExecutionData,
+	type INodeType,
+	type INodeTypeDescription,
+} from 'n8n-workflow';
+import { createCustomer, createCustomerProperties } from './customer/createCustomer';
+import { getCustomers, getCustomersProperties } from './customer/getCustomers';
 
 export class Tecnocall implements INodeType {
 	description: INodeTypeDescription = {
@@ -73,13 +80,27 @@ export class Tecnocall implements INodeType {
 				default: 'createCustomer',
 				required: true,
 			},
+			...createCustomerProperties,
+			...getCustomersProperties,
 		],
 	};
 
-	methods = {
-		actionHandler: {
-			createCustomer,
-			getCustomers,
-		},
-	};
+	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+		const resource = this.getNodeParameter('resource', 0) as string;
+		const operation = this.getNodeParameter('operation', 0) as string;
+
+		if (resource === 'customer') {
+			if (operation === 'createCustomer') {
+				return await createCustomer.call(this);
+			}
+			if (operation === 'getCustomers') {
+				return await getCustomers.call(this);
+			}
+		}
+
+		throw new NodeOperationError(
+			this.getNode(),
+			`The operation "${operation}" is not supported for resource "${resource}"`,
+		);
+	}
 }
