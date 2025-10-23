@@ -77,6 +77,13 @@ export const createCustomerProperties: INodeProperties[] = [
 				default: '',
 				description: 'Customer username',
 			},
+			{
+				displayName: 'Agent Code',
+				name: 'agent_code',
+				type: 'string',
+				default: '',
+				description: 'Customer Agent Code',
+			},
 		],
 	},
 ];
