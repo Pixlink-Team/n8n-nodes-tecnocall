@@ -8,6 +8,10 @@ import {
 } from 'n8n-workflow';
 import { createCustomer, createCustomerProperties } from './customer/createCustomer';
 import { getCustomers, getCustomersProperties } from './customer/getCustomers';
+import {
+	createCommunication,
+	createCommunicationProperties,
+} from './communication/createCommunication';
 
 export class Tecnocall implements INodeType {
 	description: INodeTypeDescription = {
@@ -46,6 +50,10 @@ export class Tecnocall implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
+						name: 'Communication',
+						value: 'communication',
+					},
+					{
 						name: 'Customer',
 						value: 'customer',
 					},
@@ -80,8 +88,30 @@ export class Tecnocall implements INodeType {
 				default: 'createCustomer',
 				required: true,
 			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ['communication'],
+					},
+				},
+				options: [
+					{
+						name: 'Create',
+						value: 'createCommunication',
+						description: 'Create a new communication',
+						action: 'Create a communication',
+					},
+				],
+				default: 'createCommunication',
+				required: true,
+			},
 			...createCustomerProperties,
 			...getCustomersProperties,
+			...createCommunicationProperties,
 		],
 	};
 
@@ -95,6 +125,12 @@ export class Tecnocall implements INodeType {
 			}
 			if (operation === 'getCustomers') {
 				return await getCustomers.call(this);
+			}
+		}
+
+		if (resource === 'communication') {
+			if (operation === 'createCommunication') {
+				return await createCommunication.call(this);
 			}
 		}
 
