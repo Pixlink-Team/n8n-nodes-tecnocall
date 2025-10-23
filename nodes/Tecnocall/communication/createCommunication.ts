@@ -14,7 +14,7 @@ export async function createCommunication(
 	for (let i = 0; i < items.length; i++) {
 		try {
 			const credentials = await this.getCredentials('tecnocallApi');
-			
+
 			const type = this.getNodeParameter('type', i) as string;
 			const agentCode = this.getNodeParameter('agentCode', i) as string;
 			const customerCode = this.getNodeParameter('customerCode', i) as string;
@@ -35,7 +35,7 @@ export async function createCommunication(
 				type,
 				agentCode,
 				customerCode,
-				data: parsedData,
+				data: JSON.stringify(parsedData),
 			};
 
 			const response = await this.helpers.httpRequest({
