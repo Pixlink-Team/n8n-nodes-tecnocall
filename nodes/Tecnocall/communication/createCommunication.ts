@@ -32,9 +32,9 @@ export async function createCommunication(
 			const url = `${baseUrl}/api/bot/communications`;
 
 			const body = {
-				type,
-				agentCode,
-				customerCode,
+				type: type,
+				agent_code: agentCode,
+				customer_code: customerCode,
 				data: JSON.stringify(parsedData),
 			};
 
