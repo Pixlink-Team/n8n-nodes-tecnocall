@@ -15,7 +15,7 @@ export async function createCommunication(
 		try {
 			const credentials = await this.getCredentials('tecnocallApi');
 			
-			const time = this.getNodeParameter('time', i) as string;
+			const type = this.getNodeParameter('type', i) as string;
 			const agentCode = this.getNodeParameter('agentCode', i) as string;
 			const customerCode = this.getNodeParameter('customerCode', i) as string;
 			const data = this.getNodeParameter('data', i) as string;
@@ -32,7 +32,7 @@ export async function createCommunication(
 			const url = `${baseUrl}/api/bot/communications`;
 
 			const body = {
-				time,
+				type,
 				agentCode,
 				customerCode,
 				data: parsedData,
@@ -70,8 +70,8 @@ export async function createCommunication(
 
 export const createCommunicationProperties: INodeProperties[] = [
 	{
-		displayName: 'Time',
-		name: 'time',
+		displayName: 'Type',
+		name: 'type',
 		type: 'string',
 		default: '',
 		required: true,
@@ -81,7 +81,7 @@ export const createCommunicationProperties: INodeProperties[] = [
 				operation: ['createCommunication'],
 			},
 		},
-		description: 'Time of the communication',
+		description: 'Type of the communication',
 	},
 	{
 		displayName: 'Agent Code',
