@@ -13,12 +13,21 @@ export async function getCustomers(
 
 	for (let i = 0; i < items.length; i++) {
 		try {
+			const credentials = await this.getCredentials('tecnocallApi');
 			const limit = this.getNodeParameter('limit', i, 50) as number;
 			const filters = this.getNodeParameter('filters', i, {}) as IDataObject;
 
+			const baseUrl = (credentials.baseUrl as string).replace(/\/$/, '');
+			const url = `${baseUrl}/api/bot/customers`;
+
 			const response = await this.helpers.httpRequest({
 				method: 'GET',
-				url: '/api/bot/customers',
+				url,
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${credentials.botToken as string}`,
+				},
 				qs: {
 					limit,
 					...filters,
