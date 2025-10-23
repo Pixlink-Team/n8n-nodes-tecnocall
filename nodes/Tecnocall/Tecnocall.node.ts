@@ -28,6 +28,7 @@ export class Tecnocall implements INodeType {
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
+				Authorization: '=Bearer {{$credentials?.botToken}}',
 			},
 		},
 		properties: [
