@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-tecnocall",
-	"version": "0.2.6",
+	"version": "0.2.7",
 	"description": "a node for tecnocall bot apis",
 	"license": "MIT",
 	"homepage": "",
