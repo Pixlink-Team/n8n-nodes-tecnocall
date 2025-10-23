@@ -35,7 +35,7 @@ export async function createCommunication(
 				type: type,
 				agent_code: agentCode,
 				customer_code: customerCode,
-				data: JSON.stringify(parsedData),
+				data: parsedData,
 			};
 
 			const response = await this.helpers.httpRequest({
