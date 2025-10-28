@@ -8,6 +8,7 @@ import {
 } from 'n8n-workflow';
 import { createCustomer, createCustomerProperties } from './customer/createCustomer';
 import { getCustomers, getCustomersProperties } from './customer/getCustomers';
+import { updateCustomer, updateCustomerProperties } from './customer/updateCustomer';
 import {
 	createCommunication,
 	createCommunicationProperties,
@@ -84,6 +85,12 @@ export class Tecnocall implements INodeType {
 						description: 'Get all customers',
 						action: 'Get customers',
 					},
+					{
+						name: 'Update',
+						value: 'updateCustomer',
+						description: 'Update a customer',
+						action: 'Update a customer',
+					},
 				],
 				default: 'createCustomer',
 				required: true,
@@ -111,6 +118,7 @@ export class Tecnocall implements INodeType {
 			},
 			...createCustomerProperties,
 			...getCustomersProperties,
+			...updateCustomerProperties,
 			...createCommunicationProperties,
 		],
 	};
@@ -125,6 +133,9 @@ export class Tecnocall implements INodeType {
 			}
 			if (operation === 'getCustomers') {
 				return await getCustomers.call(this);
+			}
+			if (operation === 'updateCustomer') {
+				return await updateCustomer.call(this);
 			}
 		}
 
