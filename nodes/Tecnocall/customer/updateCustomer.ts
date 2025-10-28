@@ -5,9 +5,7 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export async function updateCustomer(
-	this: IExecuteFunctions,
-): Promise<INodeExecutionData[][]> {
+export async function updateCustomer(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const items = this.getInputData();
 	const returnData: INodeExecutionData[] = [];
 
@@ -99,6 +97,14 @@ export const updateCustomerProperties: INodeProperties[] = [
 				default: '',
 				placeholder: 'name@email.com',
 				description: 'Customer email',
+			},
+			{
+				displayName: 'Source',
+				name: 'source_id',
+				type: 'number',
+				default: '',
+				placeholder: 'Website',
+				description: 'Source of the customer',
 			},
 		],
 	},
