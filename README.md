@@ -1,102 +1,169 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-tecnocall
 
-# n8n-nodes-starter
+This is an n8n community node for [Tecnocall API](https://tecnocall.com). It enables you to integrate Tecnocall's communication and customer management features into your n8n workflows.
 
-This starter repository helps you build custom integrations for [n8n](https://n8n.io). It includes example nodes, credentials, the node linter, and all the tooling you need to get started.
+[![npm version](https://badge.fury.io/js/n8n-nodes-tecnocall.svg)](https://badge.fury.io/js/n8n-nodes-tecnocall)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Quick Start
+## 🚀 Features
 
-> [!TIP]
-> **New to building n8n nodes?** The fastest way to get started is with `npm create @n8n/node`. This command scaffolds a complete node package for you using the [@n8n/node-cli](https://www.npmjs.com/package/@n8n/node-cli).
+- **Customer Management**
+  - Create customers
+  - Get customer by ID
+  - Get many customers with filters
+  - Update customer information
 
-**To create a new node package from scratch:**
+- **Communication Management**
+  - Create communications
+  - Get communication by ID
+  - Get many communications with filters
 
-```bash
-npm create @n8n/node
-```
+- **Modern Architecture**
+  - Type-safe TypeScript implementation
+  - Modular and maintainable code structure
+  - Comprehensive error handling
+  - Easy to extend with new operations
 
-**Already using this starter? Start developing with:**
+## 📦 Installation
 
-```bash
-npm run dev
-```
-
-This starts n8n with your nodes loaded and hot reload enabled.
-
-## What's Included
-
-This starter repository includes two example nodes to learn from:
-
-- **[Example Node](nodes/Example/)** - A simple starter node that shows the basic structure with a custom `execute` method
-- **[GitHub Issues Node](nodes/GithubIssues/)** - A complete, production-ready example built using the **declarative style**:
-  - **Low-code approach** - Define operations declaratively without writing request logic
-  - Multiple resources (Issues, Comments)
-  - Multiple operations (Get, Get All, Create)
-  - Two authentication methods (OAuth2 and Personal Access Token)
-  - List search functionality for dynamic dropdowns
-  - Proper error handling and typing
-  - Ideal for HTTP API-based integrations
-
-> [!TIP]
-> The declarative/low-code style (used in GitHub Issues) is the recommended approach for building nodes that interact with HTTP APIs. It significantly reduces boilerplate code and handles requests automatically.
-
-Browse these examples to understand both approaches, then modify them or create your own.
-
-## Finding Inspiration
-
-Looking for more examples? Check out these resources:
-
-- **[npm Community Nodes](https://www.npmjs.com/search?q=keywords:n8n-community-node-package)** - Browse thousands of community-built nodes on npm using the `n8n-community-node-package` tag
-- **[n8n Built-in Nodes](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes)** - Study the source code of n8n's official nodes for production-ready patterns and best practices
-- **[n8n Credentials](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/credentials)** - See how authentication is implemented for various services
-
-These are excellent resources to understand how to structure your nodes, handle different API patterns, and implement advanced features.
-
-## Prerequisites
-
-Before you begin, install the following on your development machine:
-
-### Required
-
-- **[Node.js](https://nodejs.org/)** (v22 or higher) and npm
-  - Linux/Mac/WSL: Install via [nvm](https://github.com/nvm-sh/nvm)
-  - Windows: Follow [Microsoft's NodeJS guide](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows)
-- **[git](https://git-scm.com/downloads)**
-
-### Recommended
-
-- Follow n8n's [development environment setup guide](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/)
-
-> [!NOTE]
-> The `@n8n/node-cli` is included as a dev dependency and will be installed automatically when you run `npm install`. The CLI includes n8n for local development, so you don't need to install n8n globally.
-
-## Getting Started with this Starter
-
-Follow these steps to create your own n8n community node package:
-
-### 1. Create Your Repository
-
-[Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template, then clone it:
+### From npm
 
 ```bash
-git clone https://github.com/<your-organization>/<your-repo-name>.git
-cd <your-repo-name>
+npm install n8n-nodes-tecnocall
 ```
 
-### 2. Install Dependencies
+### In n8n
+
+1. Go to **Settings** > **Community Nodes**
+2. Select **Install**
+3. Enter `n8n-nodes-tecnocall` in the **Enter npm package name** field
+4. Agree to the risks and click **Install**
+
+For more information, see the [n8n documentation on community nodes](https://docs.n8n.io/integrations/community-nodes/installation/).
+
+## 🔧 Configuration
+
+### Credentials
+
+You'll need to configure Tecnocall API credentials:
+
+1. **Base URL**: Your Tecnocall API endpoint (e.g., `https://api.tecnocall.com`)
+2. **Bot Token**: Your bot authentication token
+
+### Authentication
+
+The node uses Bearer token authentication. Your token is securely stored and sent with each API request.
+
+## 📖 Usage
+
+### Customer Operations
+
+#### Create Customer
+Create a new customer with optional fields like name, email, phone, username, agent code, and source ID.
+
+#### Get Customer
+Retrieve a specific customer by their ID.
+
+#### Get Many Customers
+Fetch multiple customers with optional filters:
+- Search by name, email, or phone
+- Filter by agent code
+- Filter by source ID
+- Pagination support
+
+#### Update Customer
+Update an existing customer's information.
+
+### Communication Operations
+
+#### Create Communication
+Create a new communication record with:
+- Type (e.g., call, message, email)
+- Agent code
+- Customer code
+- Custom data payload (JSON format)
+
+#### Get Communication
+Retrieve a specific communication by ID.
+
+#### Get Many Communications
+Fetch multiple communications with filters:
+- Filter by agent code
+- Filter by customer code
+- Filter by type
+- Pagination support
+
+## 🏗️ Development
+
+For detailed information about the project architecture, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
+### Building
 
 ```bash
-npm install
+# Install dependencies
+pnpm install
+
+# Build the project
+pnpm run build
+
+# Watch mode for development
+pnpm run build:watch
+
+# Run linter
+pnpm run lint
+
+# Fix linting issues
+pnpm run lint:fix
 ```
 
-This installs all required dependencies including the `@n8n/node-cli`.
+### Project Structure
 
-### 3. Explore the Examples
+```
+n8n-nodes-tecnocall/
+├── credentials/           # API authentication
+├── nodes/
+│   └── Tecnocall/
+│       ├── actions/      # Operation handlers
+│       ├── descriptions/ # UI field definitions
+│       ├── types.ts      # TypeScript types
+│       ├── utils.ts      # Utility functions
+│       └── router.ts     # Operation router
+└── icons/               # Node icons
+```
 
-Browse the example nodes in [nodes/](nodes/) and [credentials/](credentials/) to understand the structure:
+## 📄 License
 
-- Start with [nodes/Example/](nodes/Example/) for a basic node
-- Study [nodes/GithubIssues/](nodes/GithubIssues/) for a real-world implementation
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a list of changes.
+
+## 🙏 Credits
+
+- Built by [Mohammad Mahdi Khakdaman](https://github.com/Pixlink-Team)
+- Powered by [n8n](https://n8n.io)
+
+## 📞 Support
+
+- GitHub Issues: [Report a bug or request a feature](https://github.com/Pixlink-Team/n8n-nodes-tecnocall/issues)
+- Documentation: See [ARCHITECTURE.md](ARCHITECTURE.md) for technical details
+
+## 🔗 Links
+
+- [n8n Documentation](https://docs.n8n.io)
+- [n8n Community](https://community.n8n.io)
+- [Tecnocall](https://tecnocall.com)
 
 ### 4. Build Your Node
 

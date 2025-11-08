@@ -10,6 +10,7 @@ export class TecnocallApi implements ICredentialType {
 	name = 'tecnocallApi';
 
 	displayName = 'Tecnocall API';
+
 	documentationUrl = 'https://github.com/Pixlink-Team/n8n-nodes-tecnocall';
 
 	icon: Icon = { light: 'file:../icons/tecnocall.svg', dark: 'file:../icons/tecnocall.dark.svg' };
@@ -20,6 +21,9 @@ export class TecnocallApi implements ICredentialType {
 			name: 'baseUrl',
 			type: 'string',
 			default: 'https://api.tecnocall.com',
+			placeholder: 'https://api.tecnocall.com',
+			description: 'The base URL of your Tecnocall API instance',
+			required: true,
 		},
 		{
 			displayName: 'Bot Token',
@@ -27,6 +31,9 @@ export class TecnocallApi implements ICredentialType {
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
+			placeholder: 'your-bot-token',
+			description: 'The bot token for authentication',
+			required: true,
 		},
 	];
 

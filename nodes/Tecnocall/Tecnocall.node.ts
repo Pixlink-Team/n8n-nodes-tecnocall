@@ -1,18 +1,14 @@
 import {
 	NodeConnectionTypes,
-	NodeOperationError,
 	type IExecuteFunctions,
 	type INodeExecutionData,
 	type INodeType,
 	type INodeTypeDescription,
 } from 'n8n-workflow';
-import { createCustomer, createCustomerProperties } from './customer/createCustomer';
-import { getCustomers, getCustomersProperties } from './customer/getCustomers';
-import { updateCustomer, updateCustomerProperties } from './customer/updateCustomer';
-import {
-	createCommunication,
-	createCommunicationProperties,
-} from './communication/createCommunication';
+
+import { router } from './router';
+import { customerOperations, customerFields } from './descriptions/CustomerDescription';
+import { communicationOperations, communicationFields } from './descriptions/CommunicationDescription';
 
 export class Tecnocall implements INodeType {
 	description: INodeTypeDescription = {
@@ -62,92 +58,14 @@ export class Tecnocall implements INodeType {
 				default: 'customer',
 				required: true,
 			},
-			{
-				displayName: 'Operation',
-				name: 'operation',
-				type: 'options',
-				noDataExpression: true,
-				displayOptions: {
-					show: {
-						resource: ['customer'],
-					},
-				},
-				options: [
-					{
-						name: 'Create',
-						value: 'createCustomer',
-						description: 'Create a new customer',
-						action: 'Create a customer',
-					},
-					{
-						name: 'Get',
-						value: 'getCustomers',
-						description: 'Get all customers',
-						action: 'Get customers',
-					},
-					{
-						name: 'Update',
-						value: 'updateCustomer',
-						description: 'Update a customer',
-						action: 'Update a customer',
-					},
-				],
-				default: 'createCustomer',
-				required: true,
-			},
-			{
-				displayName: 'Operation',
-				name: 'operation',
-				type: 'options',
-				noDataExpression: true,
-				displayOptions: {
-					show: {
-						resource: ['communication'],
-					},
-				},
-				options: [
-					{
-						name: 'Create',
-						value: 'createCommunication',
-						description: 'Create a new communication',
-						action: 'Create a communication',
-					},
-				],
-				default: 'createCommunication',
-				required: true,
-			},
-			...createCustomerProperties,
-			...getCustomersProperties,
-			...updateCustomerProperties,
-			...createCommunicationProperties,
+			...customerOperations,
+			...communicationOperations,
+			...customerFields,
+			...communicationFields,
 		],
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const resource = this.getNodeParameter('resource', 0) as string;
-		const operation = this.getNodeParameter('operation', 0) as string;
-
-		if (resource === 'customer') {
-			if (operation === 'createCustomer') {
-				return await createCustomer.call(this);
-			}
-			if (operation === 'getCustomers') {
-				return await getCustomers.call(this);
-			}
-			if (operation === 'updateCustomer') {
-				return await updateCustomer.call(this);
-			}
-		}
-
-		if (resource === 'communication') {
-			if (operation === 'createCommunication') {
-				return await createCommunication.call(this);
-			}
-		}
-
-		throw new NodeOperationError(
-			this.getNode(),
-			`The operation "${operation}" is not supported for resource "${resource}"`,
-		);
+		return await router.call(this);
 	}
 }
