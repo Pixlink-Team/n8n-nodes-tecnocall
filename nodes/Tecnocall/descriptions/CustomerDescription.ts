@@ -93,11 +93,25 @@ export const customerFields: INodeProperties[] = [
 				description: 'Customer phone number',
 			},
 			{
+				displayName: 'Product ID',
+				name: 'product_id',
+				type: 'number',
+				default: 0,
+				description: 'Product identifier associated with the customer',
+			},
+			{
 				displayName: 'Source ID',
 				name: 'source_id',
 				type: 'number',
 				default: 0,
 				description: 'Source identifier for the customer (e.g., website, app)',
+			},
+			{
+				displayName: 'Status ID',
+				name: 'status_id',
+				type: 'number',
+				default: 0,
+				description: 'Status identifier for the customer',
 			},
 			{
 				displayName: 'Username',
@@ -268,11 +282,25 @@ export const customerFields: INodeProperties[] = [
 				description: 'Customer phone number',
 			},
 			{
+				displayName: 'Product ID',
+				name: 'product_id',
+				type: 'number',
+				default: 0,
+				description: 'Product identifier associated with the customer',
+			},
+			{
 				displayName: 'Source ID',
 				name: 'source_id',
 				type: 'number',
 				default: 0,
 				description: 'Source identifier for the customer',
+			},
+			{
+				displayName: 'Status ID',
+				name: 'status_id',
+				type: 'number',
+				default: 0,
+				description: 'Status identifier for the customer',
 			},
 			{
 				displayName: 'Username',

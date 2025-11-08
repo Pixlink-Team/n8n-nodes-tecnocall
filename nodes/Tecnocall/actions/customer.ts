@@ -24,6 +24,8 @@ export async function createCustomer(
 			email: additionalFields.email as string,
 			agent_code: additionalFields.agent_code as string,
 			source_id: additionalFields.source_id as number,
+			product_id: additionalFields.product_id as number,
+			status_id: additionalFields.status_id as number,
 		});
 
 		const response = await tecnocallApiRequest.call(this, {
@@ -165,6 +167,8 @@ export async function updateCustomer(
 			email: updateFields.email as string,
 			agent_code: updateFields.agent_code as string,
 			source_id: updateFields.source_id as number,
+			product_id: updateFields.product_id as number,
+			status_id: updateFields.status_id as number,
 		});
 
 		if (Object.keys(body).length === 0) {

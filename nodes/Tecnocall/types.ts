@@ -20,6 +20,8 @@ export interface TecnocallCustomer extends IDataObject {
 	email?: string;
 	agent_code?: string;
 	source_id?: number;
+	product_id?: number;
+	status_id?: number;
 	created_at?: string;
 	updated_at?: string;
 }
@@ -31,6 +33,8 @@ export interface CreateCustomerParams {
 	email?: string;
 	agent_code?: string;
 	source_id?: number;
+	product_id?: number;
+	status_id?: number;
 }
 
 export interface UpdateCustomerParams {
@@ -41,6 +45,8 @@ export interface UpdateCustomerParams {
 	email?: string;
 	agent_code?: string;
 	source_id?: number;
+	product_id?: number;
+	status_id?: number;
 }
 
 export interface GetCustomersParams {
