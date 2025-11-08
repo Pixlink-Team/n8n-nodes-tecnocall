@@ -20,6 +20,11 @@ import {
 	getAllCommunications,
 } from './actions/communication';
 
+// Source operations
+import {
+	getAllSources,
+} from './actions/source';
+
 type OperationHandler = (
 	this: IExecuteFunctions,
 	index: number,
@@ -46,6 +51,9 @@ const operationRouter: OperationMap = {
 		create: createCommunication,
 		get: getCommunication,
 		getAll: getAllCommunications,
+	},
+	source: {
+		getAll: getAllSources,
 	},
 };
 

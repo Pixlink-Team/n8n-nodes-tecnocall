@@ -5,11 +5,12 @@
 import type { IDataObject } from 'n8n-workflow';
 
 // Resource types
-export type TecnocallResource = 'customer' | 'communication';
+export type TecnocallResource = 'customer' | 'communication' | 'source';
 
 // Operation types
 export type CustomerOperation = 'create' | 'get' | 'getAll' | 'update' | 'delete';
 export type CommunicationOperation = 'create' | 'get' | 'getAll';
+export type SourceOperation = 'getAll';
 
 // Customer types
 export interface TecnocallCustomer extends IDataObject {
@@ -73,6 +74,15 @@ export interface CreateCommunicationParams {
 	agent_code: string;
 	customer_code: string;
 	data: string | IDataObject;
+}
+
+// Source types
+export interface TecnocallSource extends IDataObject {
+	id?: string | number;
+	name?: string;
+	description?: string;
+	created_at?: string;
+	updated_at?: string;
 }
 
 // API Response types

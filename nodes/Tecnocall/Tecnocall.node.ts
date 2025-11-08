@@ -9,6 +9,7 @@ import {
 import { router } from './router';
 import { customerOperations, customerFields } from './descriptions/CustomerDescription';
 import { communicationOperations, communicationFields } from './descriptions/CommunicationDescription';
+import { sourceOperations, sourceFields } from './descriptions/SourceDescription';
 
 export class Tecnocall implements INodeType {
 	description: INodeTypeDescription = {
@@ -54,14 +55,20 @@ export class Tecnocall implements INodeType {
 						name: 'Customer',
 						value: 'customer',
 					},
+					{
+						name: 'Source',
+						value: 'source',
+					},
 				],
 				default: 'customer',
 				required: true,
 			},
 			...customerOperations,
 			...communicationOperations,
+			...sourceOperations,
 			...customerFields,
 			...communicationFields,
+			...sourceFields,
 		],
 	};
 
