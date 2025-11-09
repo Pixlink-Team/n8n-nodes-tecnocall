@@ -30,6 +30,11 @@ import {
 	getAllStatuses,
 } from './actions/status';
 
+// Settings operations
+import {
+	getAllSettings,
+} from './actions/settings';
+
 // Product operations
 import {
 	getAllProducts,
@@ -67,6 +72,9 @@ const operationRouter: OperationMap = {
 	},
 	status: {
 		getAll: getAllStatuses,
+	},
+	settings: {
+		getAll: getAllSettings,
 	},
 	product: {
 		getAll: getAllProducts,
