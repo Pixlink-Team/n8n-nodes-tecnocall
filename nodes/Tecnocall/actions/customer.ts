@@ -17,15 +17,20 @@ export async function createCustomer(
 	try {
 		const additionalFields = this.getNodeParameter('additionalFields', index, {}) as IDataObject;
 
+		// Extract values from resourceLocator fields
+		const sourceId = additionalFields.source_id as IDataObject;
+		const productId = additionalFields.product_id as IDataObject;
+		const statusId = additionalFields.status_id as IDataObject;
+
 		const body: CreateCustomerParams = cleanObject({
 			name: additionalFields.name as string,
 			username: additionalFields.username as string,
 			phone: additionalFields.phone as string,
 			email: additionalFields.email as string,
 			agent_code: additionalFields.agent_code as string,
-			source_id: additionalFields.source_id as number,
-			product_id: additionalFields.product_id as number,
-			status_id: additionalFields.status_id as number,
+			source_id: sourceId ? Number(sourceId.value) || 0 : undefined,
+			product_id: productId ? Number(productId.value) || 0 : undefined,
+			status_id: statusId ? Number(statusId.value) || 0 : undefined,
 		});
 
 		const response = await tecnocallApiRequest.call(this, {
@@ -160,15 +165,20 @@ export async function updateCustomer(
 			throw new Error('Customer ID is required');
 		}
 
+		// Extract values from resourceLocator fields
+		const sourceId = updateFields.source_id as IDataObject;
+		const productId = updateFields.product_id as IDataObject;
+		const statusId = updateFields.status_id as IDataObject;
+
 		const body: Partial<UpdateCustomerParams> = cleanObject({
 			name: updateFields.name as string,
 			username: updateFields.username as string,
 			phone: updateFields.phone as string,
 			email: updateFields.email as string,
 			agent_code: updateFields.agent_code as string,
-			source_id: updateFields.source_id as number,
-			product_id: updateFields.product_id as number,
-			status_id: updateFields.status_id as number,
+			source_id: sourceId ? Number(sourceId.value) || 0 : undefined,
+			product_id: productId ? Number(productId.value) || 0 : undefined,
+			status_id: statusId ? Number(statusId.value) || 0 : undefined,
 		});
 
 		if (Object.keys(body).length === 0) {

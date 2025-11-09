@@ -25,6 +25,16 @@ import {
 	getAllSources,
 } from './actions/source';
 
+// Status operations
+import {
+	getAllStatuses,
+} from './actions/status';
+
+// Product operations
+import {
+	getAllProducts,
+} from './actions/product';
+
 type OperationHandler = (
 	this: IExecuteFunctions,
 	index: number,
@@ -54,6 +64,12 @@ const operationRouter: OperationMap = {
 	},
 	source: {
 		getAll: getAllSources,
+	},
+	status: {
+		getAll: getAllStatuses,
+	},
+	product: {
+		getAll: getAllProducts,
 	},
 };
 
