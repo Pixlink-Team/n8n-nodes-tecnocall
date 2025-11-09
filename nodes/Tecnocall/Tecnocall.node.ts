@@ -15,6 +15,7 @@ import { sourceOperations, sourceFields } from './descriptions/SourceDescription
 import { statusOperations, statusFields } from './descriptions/StatusDescription';
 import { productOperations, productFields } from './descriptions/ProductDescription';
 import { tecnocallApiRequest } from './utils';
+import { settingsFields } from './descriptions/SettingsDescription';
 
 export class Tecnocall implements INodeType {
 	description: INodeTypeDescription = {
@@ -86,6 +87,7 @@ export class Tecnocall implements INodeType {
 			...sourceFields,
 			...statusFields,
 			...productFields,
+			...settingsFields
 		],
 	};
 
