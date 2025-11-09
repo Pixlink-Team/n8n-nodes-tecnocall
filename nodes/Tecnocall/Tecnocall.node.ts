@@ -73,6 +73,10 @@ export class Tecnocall implements INodeType {
 						name: 'Status',
 						value: 'status',
 					},
+					{
+						name: 'Settings',
+						value: 'settings',
+					}
 				],
 				default: 'customer',
 				required: true,

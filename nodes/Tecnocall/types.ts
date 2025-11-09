@@ -5,7 +5,7 @@
 import type { IDataObject } from 'n8n-workflow';
 
 // Resource types
-export type TecnocallResource = 'customer' | 'communication' | 'source' | 'status' | 'product';
+export type TecnocallResource = 'customer' | 'communication' | 'source' | 'status' | 'product' | 'settings';
 
 // Operation types
 export type CustomerOperation = 'create' | 'get' | 'getAll' | 'update' | 'delete';
