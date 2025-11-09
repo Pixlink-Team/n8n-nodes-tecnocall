@@ -13,6 +13,7 @@ export type CommunicationOperation = 'create' | 'get' | 'getAll';
 export type SourceOperation = 'getAll';
 export type StatusOperation = 'getAll';
 export type ProductOperation = 'getAll';
+export type SettingsOperation = 'getAll';
 
 // Customer types
 export interface TecnocallCustomer extends IDataObject {
@@ -102,6 +103,16 @@ export interface TecnocallProduct extends IDataObject {
 	name?: string;
 	description?: string;
 	price?: number;
+	created_at?: string;
+	updated_at?: string;
+}
+
+// Settings types
+export interface TecnocallSettings extends IDataObject {
+	id?: string | number;
+	key?: string;
+	value?: string | number | boolean | IDataObject;
+	description?: string;
 	created_at?: string;
 	updated_at?: string;
 }

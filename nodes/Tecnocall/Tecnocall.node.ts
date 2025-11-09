@@ -14,8 +14,8 @@ import { communicationOperations, communicationFields } from './descriptions/Com
 import { sourceOperations, sourceFields } from './descriptions/SourceDescription';
 import { statusOperations, statusFields } from './descriptions/StatusDescription';
 import { productOperations, productFields } from './descriptions/ProductDescription';
+import { settingsOperations, settingsFields } from './descriptions/SettingsDescription';
 import { tecnocallApiRequest } from './utils';
-import { settingsFields } from './descriptions/SettingsDescription';
 
 export class Tecnocall implements INodeType {
 	description: INodeTypeDescription = {
@@ -66,6 +66,10 @@ export class Tecnocall implements INodeType {
 						value: 'product',
 					},
 					{
+						name: 'Setting',
+						value: 'settings',
+					},
+					{
 						name: 'Source',
 						value: 'source',
 					},
@@ -73,10 +77,6 @@ export class Tecnocall implements INodeType {
 						name: 'Status',
 						value: 'status',
 					},
-					{
-						name: 'Settings',
-						value: 'settings',
-					}
 				],
 				default: 'customer',
 				required: true,
@@ -86,12 +86,13 @@ export class Tecnocall implements INodeType {
 			...sourceOperations,
 			...statusOperations,
 			...productOperations,
+			...settingsOperations,
 			...customerFields,
 			...communicationFields,
 			...sourceFields,
 			...statusFields,
 			...productFields,
-			...settingsFields
+			...settingsFields,
 		],
 	};
 

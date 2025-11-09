@@ -30,15 +30,15 @@ import {
 	getAllStatuses,
 } from './actions/status';
 
-// Settings operations
-import {
-	getAllSettings,
-} from './actions/settings';
-
 // Product operations
 import {
 	getAllProducts,
 } from './actions/product';
+
+// Settings operations
+import {
+	getAllSettings,
+} from './actions/settings';
 
 type OperationHandler = (
 	this: IExecuteFunctions,
@@ -73,11 +73,11 @@ const operationRouter: OperationMap = {
 	status: {
 		getAll: getAllStatuses,
 	},
-	settings: {
-		getAll: getAllSettings,
-	},
 	product: {
 		getAll: getAllProducts,
+	},
+	settings: {
+		getAll: getAllSettings,
 	},
 };
 
