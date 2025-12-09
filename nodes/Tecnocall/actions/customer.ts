@@ -50,17 +50,14 @@ export async function createCustomer(
 	} catch (error) {
 		if (this.continueOnFail()) {
 			return {
-				json: { error: (error).errors },
+				json: { error: error },
 				pairedItem: { item: index },
 			};
 		}
-		throw new NodeOperationError(
-			this.getNode(),
-			`Failed to create customer: ${(error).errors}`,
-			{
-				itemIndex: index,
-			},
-		);
+		throw new NodeOperationError(this.getNode(), `Failed to create customer: ${error}`, {
+			itemIndex: index,
+			message: error,
+		});
 	}
 }
 
@@ -94,15 +91,13 @@ export async function getCustomer(
 	} catch (error) {
 		if (this.continueOnFail()) {
 			return {
-				json: { error: (error).errors },
+				json: { error: error.errors },
 				pairedItem: { item: index },
 			};
 		}
-		throw new NodeOperationError(
-			this.getNode(),
-			`Failed to get customer: ${(error ).error}`,
-			{ itemIndex: index },
-		);
+		throw new NodeOperationError(this.getNode(), `Failed to get customer: ${error.error}`, {
+			itemIndex: index,
+		});
 	}
 }
 
@@ -218,14 +213,13 @@ export async function updateCustomer(
 	} catch (error) {
 		if (this.continueOnFail()) {
 			return {
-				json: { error: (error).errors },
+				json: { error: error.errors },
 				pairedItem: { item: index },
 			};
 		}
-		throw new NodeOperationError(
-			this.getNode(),
-			`Failed to update customer: ${(error).errors}`,
-			{ itemIndex: index },
-		);
+		throw new NodeOperationError(this.getNode(), `Failed to update customer: ${error}`, {
+			itemIndex: index,
+			message: error,
+		});
 	}
 }
