@@ -56,7 +56,7 @@ export async function createCustomer(
 		}
 		throw new NodeOperationError(this.getNode(), `Failed to create customer: ${error.message}`, {
 			itemIndex: index,
-			message: error,
+			message: error.toString(),
 		});
 	}
 }
@@ -219,7 +219,7 @@ export async function updateCustomer(
 		}
 		throw new NodeOperationError(this.getNode(), `Failed to update customer: ${error.message}`, {
 			itemIndex: index,
-			message: error,
+			message: error.toString(),
 		});
 	}
 }
