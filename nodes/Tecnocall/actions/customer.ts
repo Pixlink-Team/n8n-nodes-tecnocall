@@ -54,7 +54,7 @@ export async function createCustomer(
 				pairedItem: { item: index },
 			};
 		}
-		throw new NodeOperationError(this.getNode(), `Failed to create customer: ${error}`, {
+		throw new NodeOperationError(this.getNode(), `Failed to create customer: ${error.message}`, {
 			itemIndex: index,
 			message: error,
 		});
@@ -217,7 +217,7 @@ export async function updateCustomer(
 				pairedItem: { item: index },
 			};
 		}
-		throw new NodeOperationError(this.getNode(), `Failed to update customer: ${error}`, {
+		throw new NodeOperationError(this.getNode(), `Failed to update customer: ${error.message}`, {
 			itemIndex: index,
 			message: error,
 		});
