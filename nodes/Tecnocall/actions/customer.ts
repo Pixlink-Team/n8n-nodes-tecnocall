@@ -33,11 +33,15 @@ export async function createCustomer(
 			status_id: statusId ? Number(statusId.value) || 0 : undefined,
 		});
 
-		const response = await tecnocallApiRequest.call(this, {
-			method: 'POST',
-			endpoint: '/api/bot/customers',
-			body: body as IDataObject,
-		}, index);
+		const response = await tecnocallApiRequest.call(
+			this,
+			{
+				method: 'POST',
+				endpoint: '/api/bot/customers',
+				body: body as IDataObject,
+			},
+			index,
+		);
 
 		return {
 			json: response,
@@ -46,14 +50,16 @@ export async function createCustomer(
 	} catch (error) {
 		if (this.continueOnFail()) {
 			return {
-				json: { error: (error as Error).message },
+				json: { error: (error).errors },
 				pairedItem: { item: index },
 			};
 		}
 		throw new NodeOperationError(
 			this.getNode(),
-			`Failed to create customer: ${(error as Error).message}`,
-			{ itemIndex: index },
+			`Failed to create customer: ${(error).errors}`,
+			{
+				itemIndex: index,
+			},
 		);
 	}
 }
@@ -72,10 +78,14 @@ export async function getCustomer(
 			throw new Error('Customer ID is required');
 		}
 
-		const response = await tecnocallApiRequest.call(this, {
-			method: 'GET',
-			endpoint: `/api/bot/customers/${customerId}`,
-		}, index);
+		const response = await tecnocallApiRequest.call(
+			this,
+			{
+				method: 'GET',
+				endpoint: `/api/bot/customers/${customerId}`,
+			},
+			index,
+		);
 
 		return {
 			json: response,
@@ -84,13 +94,13 @@ export async function getCustomer(
 	} catch (error) {
 		if (this.continueOnFail()) {
 			return {
-				json: { error: (error as Error).message },
+				json: { error: (error).errors },
 				pairedItem: { item: index },
 			};
 		}
 		throw new NodeOperationError(
 			this.getNode(),
-			`Failed to get customer: ${(error as Error).message}`,
+			`Failed to get customer: ${(error ).error}`,
 			{ itemIndex: index },
 		);
 	}
@@ -115,11 +125,15 @@ export async function getAllCustomers(
 			source_id: filters.source_id as number,
 		});
 
-		const response = await tecnocallApiRequest.call(this, {
-			method: 'GET',
-			endpoint: '/api/bot/customers',
-			qs: qs as IDataObject,
-		}, index);
+		const response = await tecnocallApiRequest.call(
+			this,
+			{
+				method: 'GET',
+				endpoint: '/api/bot/customers',
+				qs: qs as IDataObject,
+			},
+			index,
+		);
 
 		// Handle different response formats
 		let customers: IDataObject[] = [];
@@ -137,10 +151,12 @@ export async function getAllCustomers(
 		}));
 	} catch (error) {
 		if (this.continueOnFail()) {
-			return [{
-				json: { error: (error as Error).message },
-				pairedItem: { item: index },
-			}];
+			return [
+				{
+					json: { error: (error as Error).message },
+					pairedItem: { item: index },
+				},
+			];
 		}
 		throw new NodeOperationError(
 			this.getNode(),
@@ -185,11 +201,15 @@ export async function updateCustomer(
 			throw new Error('At least one field must be provided to update');
 		}
 
-		const response = await tecnocallApiRequest.call(this, {
-			method: 'PUT',
-			endpoint: `/api/bot/customers/${customerId}`,
-			body,
-		}, index);
+		const response = await tecnocallApiRequest.call(
+			this,
+			{
+				method: 'PUT',
+				endpoint: `/api/bot/customers/${customerId}`,
+				body,
+			},
+			index,
+		);
 
 		return {
 			json: response,
@@ -198,13 +218,13 @@ export async function updateCustomer(
 	} catch (error) {
 		if (this.continueOnFail()) {
 			return {
-				json: { error: (error as Error).message },
+				json: { error: (error).errors },
 				pairedItem: { item: index },
 			};
 		}
 		throw new NodeOperationError(
 			this.getNode(),
-			`Failed to update customer: ${(error as Error).message}`,
+			`Failed to update customer: ${(error).errors}`,
 			{ itemIndex: index },
 		);
 	}
